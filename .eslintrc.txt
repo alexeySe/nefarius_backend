@@ -1,0 +1,48 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "project": "tsconfig.json"
+  },
+  "extends": [
+    "airbnb-base",
+    "airbnb-typescript/base",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "@typescript-eslint/no-floating-promises": ["warn"],
+    "no-warning-comments": [
+      "warn",
+      {
+        "terms": ["todo"],
+        "location": "start"
+      }
+    ],
+    "linebreak-style": "off",
+    "no-console": "off",
+    "no-plusplus": "off",
+    "import/no-cycle": ["off"],
+    "@typescript-eslint/indent": ["error", 4],
+    "import/prefer-default-export": ["off"],
+    "no-continue": ["off"],
+    "no-restricted-syntax": ["off"],
+    "class-methods-use-this": ["off"],
+    "no-await-in-loop": ["off"],
+    "@typescript-eslint/dot-notation": ["off"],
+    "semi": ["error"],
+    "max-len": [
+      2,
+      {
+        "code": 140,
+        "tabWidth": 4,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }
+    ],
+    "@typescript-eslint/no-empty-interface": ["off"]
+  }
+}
