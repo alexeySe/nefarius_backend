@@ -24,7 +24,6 @@ export class GameGateway implements OnGatewayConnection {
 
         const decodeToken = await this.authService.decodeToken(token);
         // проверять количество участников
-        // проверять пользователя в комнате???
         const game = await this.gameRepository.findOne({
             relations: ['players'],
             where: {

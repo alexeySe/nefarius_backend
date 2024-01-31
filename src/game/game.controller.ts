@@ -1,5 +1,5 @@
 import {
-    Body, Controller, Get, Param, Post, Put, Req, UseGuards,
+    Body, ClassSerializerInterceptor, Controller, Get, Param, Post, Put, Req, UseGuards, UseInterceptors,
 } from '@nestjs/common';
 import { AuthService } from 'src/auth/auth.service';
 import { ApiBasicAuth } from '@nestjs/swagger';
@@ -15,6 +15,7 @@ export class GameController {
     ) { }
 
     @Post()
+    @UseInterceptors(ClassSerializerInterceptor)
     @ApiBasicAuth()
     @UseGuards(BasicAuthGuard)
     async createGame(@Body() dto: CreateGameDto, @Req() req) {
@@ -23,16 +24,10 @@ export class GameController {
         return { game, token };
     }
 
-    // Удалить после тестов
-    @Get('token/:token')
-    async decodeToken(@Param('token') token: string) {
-        const Itoken = await this.authService.decodeToken(token);
-        console.log(Itoken);
-        return (Itoken);
-    }
 
     // проверять количество участников
     @Put(':roomId/join')
+    @UseInterceptors(ClassSerializerInterceptor)
     @ApiBasicAuth()
     @UseGuards(BasicAuthGuard)
     async joinGame(@Param('roomId') roomId: string, @Req() req) {
@@ -42,6 +37,7 @@ export class GameController {
     }
 
     @Put(':roomId/leaveGame')
+    @UseInterceptors(ClassSerializerInterceptor)
     @ApiBasicAuth()
     @UseGuards(BasicAuthGuard)
     async leaveGame(@Param('roomId') roomId: string, @Req() req) {
@@ -53,6 +49,7 @@ export class GameController {
     }
 
     @Get()
+    @UseInterceptors(ClassSerializerInterceptor)
     @ApiBasicAuth()
     @UseGuards(BasicAuthGuard)
     async findAllGame() {
@@ -60,6 +57,7 @@ export class GameController {
     }
 
     @Get(':roomId')
+    @UseInterceptors(ClassSerializerInterceptor)
     @ApiBasicAuth()
     @UseGuards(BasicAuthGuard)
     async findOneGame(@Param('roomId') roomId: string) {

@@ -2,9 +2,8 @@ import {
     Body, Controller, Delete, Get, Post, Put, Req, UseGuards,
 } from '@nestjs/common';
 import {
-    ApiBasicAuth, ApiBearerAuth, ApiOperation, ApiResponse,
+    ApiBasicAuth, ApiOperation,
 } from '@nestjs/swagger/dist';
-import { JwtAuthGuard } from 'src/auth/jwt.auth.guard';
 import { BasicAuthGuard } from 'src/auth/basic-auth.guard';
 import { CreatePlayerDto } from './dto/create-player.dto';
 import { PlayerService } from './player.service';

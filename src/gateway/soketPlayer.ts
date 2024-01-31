@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Socket } from 'socket.io';
 import { Method, SocketMessage } from 'src/gameengine/example/socket-server-game';
 import {
@@ -19,7 +18,6 @@ export class SocketPlayer implements User {
     constructor(socket: Socket, roomId: string) {
         this.socket = socket;
         this.roomId = roomId;
-        // eslint-disable-next-line no-underscore-dangle
         this.socket.on('data', (roomName, data) => {
             if (roomName === roomId) {
                 this._socketDataHandler(data);
@@ -27,7 +25,6 @@ export class SocketPlayer implements User {
         });
     }
 
-    // eslint-disable-next-line no-underscore-dangle
     _socketDataHandler(bufer: string): void {
         let data = `${bufer}`;
         const messages = data.split('\r');
@@ -45,9 +42,7 @@ export class SocketPlayer implements User {
     }
 
     async waitForAnswer(method: Method): Promise<SocketMessage> {
-        // Wait for another operation to complete
         while (this.waitingFunction !== null) {
-            // eslint-disable-next-line @typescript-eslint/no-use-before-define
             await sleep(1000);
         }
         return new Promise((resolve) => {

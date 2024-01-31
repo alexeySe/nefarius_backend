@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import {
     Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn,
 } from 'typeorm';
@@ -10,12 +11,15 @@ export class Player {
     @Column({ unique: true, nullable: false })
         email: string;
 
+    @Exclude()
     @Column({ nullable: false })
         password: string;
 
+    @Exclude()
     @CreateDateColumn()
         createdAt: Date;
 
+    @Exclude()
     @UpdateDateColumn()
         updatedAt: Date;
 }
